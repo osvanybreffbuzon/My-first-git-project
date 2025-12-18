@@ -1,0 +1,166 @@
+CREATE DATABASE perozo;
+
+CREATE  TABLE cargos (
+cargo_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+nombre VARCHAR(30) NOT NULL,
+descripcion VARCHAR (100) DEFAULT "Sin descripcion");
+
+CREATE TABLE profesores(
+profesor_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+ nombre VARCHAR(30) NOT NULL,
+ apellido VARCHAR(30) NOT NULL,
+ edad VARCHAR(30) NOT NULL,
+ sexo CHAR(9) NOT NULL,
+ direccion VARCHAR(100) NOT NULL,
+ cargo INT UNSIGNED,
+ FOREIGN KEY(cargo) REFERENCES cargos(cargo_id)
+ );
+
+ CREATE TABLE asignaturas (
+ asignatura_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+ asignatura VARCHAR(30) NOT NULL
+ );
+
+CREATE TABLE grupos(
+grupo_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+grupo INT UNSIGNED
+  );
+  
+CREATE TABLE grados (
+ grado_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+grado VARCHAR (20) NOT NULL
+);
+
+CREATE TABLE grupos_x_grados(
+gpg_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+grado INT UNSIGNED,
+grupo INT UNSIGNED,
+profesor INT UNSIGNED, 
+matricula INT UNSIGNED DEFAULT 0,
+FOREIGN KEY(grado) REFERENCES grados(grado_id),
+FOREIGN KEY (grupo) REFERENCES grupos(grupo_id),
+FOREIGN KEY(profesor) REFERENCES profesores(profesor_id)
+  );
+
+CREATE TABLE profesor_x_asignaturas(
+ pa_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+ profesor INT UNSIGNED,
+ asignatura INT UNSIGNED,
+ grado INT UNSIGNED, 
+ FOREIGN KEY(profesor) REFERENCES profesores(profesor_id),
+ FOREIGN KEY(asignatura) REFERENCES asignaturas( asignatura_id),
+FOREIGN KEY(grado) REFERENCES grados(grado_id)
+   );
+
+CREATE TABLE estudiantes (
+estudiante_id  INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+nombre VARCHAR (30) NOT NULL, 
+apellido VARCHAR (30) NOT NULL, 
+sexo CHAR (9) NOT NULL,
+edad INT UNSIGNED DEFAULT 0,
+direccion VARCHAR (100) NOT NULL DEFAULT "Sin direccion", 
+grado INT UNSIGNED, 
+grupo INT UNSIGNED,
+FOREIGN KEY(grado) REFERENCES  grados(grado_id),
+FOREIGN KEY(grupo) REFERENCES  grupos(grupo_id)
+);
+
+CREATE TABLE caracterizacion_psicopedagogica(
+   id_caracterizacion  INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+   caracterizacion TEXT NOT NULL,
+   estudiante INT UNSIGNED,
+   profesor INT UNSIGNED,
+  fecha CHAR(9) NOT NULL,
+  FOREIGN KEY(estudiante) REFERENCES        estudiantes(estudiante_id),
+  FOREIGN KEY(profesor) REFERENCES        profesores(profesor_id)
+   );
+ 
+CREATE TABLE resultados_academicos(
+  ra_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+  estudiante INT UNSIGNED, 
+  asignatura INT UNSIGNED, 
+  calificacion DECIMAL(4,2) UNSIGNED,
+  descripcion CHAR(3) DEFAULT "S/N",
+  fecha CHAR(9),
+  FOREIGN KEY(estudiante) REFERENCES        estudiantes(estudiante_id),
+  FOREIGN KEY(asignatura) REFERENCES      asignaturas (asignatura_id) 
+);
+
+INSERT INTO grados VALUE 
+(0,"Decimo"),
+(0,"Onceno"),
+(0,"Duodecimo");
+
+INSERT INTO grupos VALUE
+ (0,1),
+(0,2),
+(0,3);
+ 
+INSERT INTO estudiantes (nombre,apellido, sexo,edad,direccion, grado,grupo) VALUE
+("Osvany","Breff Buzon","masculino",35,"Rpto Batey 1",1,2),
+("Lisbeth","Torres Martinez","femenino",32,"Leonardo Gamboa",1,3),
+("Abrahan Kaled","Breff Torres","masculino",11,"Leonardo Gamboa",3,2),
+("Caridad","Buzon Lopez","femenino",55,"Rpto Batey 1",2,3),
+("Antonio Sergio","Torres Feria","masculino",55,"Rpto Batey 1",1,1);
+
+INSERT INTO cargos (nombre,descripcion) VALUE
+("Administrativo","Petenece a la direccion"),
+("Profesor","Da clases"),
+("Trabajador","Limpieza de la institucion");
+
+
+
+INSERT INTO asignaturas VALUE
+(0,"Español Literatura"),
+(0,"Matematicas"),
+(0,"Biologia"),
+(0,"Fisica"),
+(0,"Historia"),
+(0,"Cultura Politica"),
+(0,"PMI");
+
+INSERT INTO resultados_academicos VALUE
+
+(0,1,2,95.23,"TCP","7-9-2024"),
+
+(0,2,3,90.25,"TCP","7-9-2024"),
+
+(0,3,4,70.43,"TCP","7-9-2024"),
+
+(0,1,2,95.00,"TCP","7-9-2024"),
+
+(0,2,3,99.26,"TCP","7-9-2024"),
+
+(0,3,4,80.21,"TCP","7-9-2024");
+
+INSERT INTO profesores VALUE (0,"Marelis","Garriga Dominguez",45,"femenino","Las 40",1),
+(0,"Neisy","Ramirez Perez",43,"femenino","Rpto medico",1),
+(0,"Anisleidis","Rodriguez Vazquez",26,"femenino","Las Punta",2);
+
+INSERT INTO grupos_x_grados VALUE
+(0,1,1,1,0),
+(0,1,2,1,0),
+(0,1,3,2,0),
+(0,2,1,3,0),
+(0,2,2,3,0),
+(0,2,3,2,0),
+(0,3,1,1,0),
+(0,3,2,2,0),
+(0,3,3,3,0);
+INSERT INTO caracterizacion_psicopedagogica VALUE(
+1,"Lorem ipsum se refiere a texto de marcador de posición que se utiliza a menudo en publicaciones y diseño gráfico para demostrar el estilo visual de un documento, página web o tipografía. Su finalidad es servir como muestra, no para leerse como oraciones con sentido.",2,1,"9/5/2024"
+),
+(2,"Lorem ipsum se refiere a texto de marcador de posición que se utiliza a menudo en publicaciones y diseño gráfico para demostrar el estilo visual de un documento, página web o tipografía. Su finalidad es servir como muestra, no para leerse como oraciones con sentido.",3,1,"14/5/2024"
+);
+
+select e.nombre,e.apellido,a.asignatura,ra.calificacion,ra.descripcion from resultados_academicos ra 
+inner join estudiantes e on  ra.estudiante = e.estudiante_id
+inner join asignaturas a on ra.asignatura=a.asignatura_id
+group by e.nombre,e.apellido,a.asignatura,ra.descripcion;
+
+select e.nombre ,e.apellido,c.caracterizacion,p.nombre,p.apellido,c.fecha from caracterizacion_psicopedagogica c
+inner join estudiantes e 
+on c.estudiante =e.estudiante_id 
+inner join profesores p
+on c.profesor=p.profesor_id;
+
