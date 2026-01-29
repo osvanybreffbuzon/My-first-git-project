@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Prueba</title>
+  <link href="./styles.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.2.1/hamburgers.min.css" rel="stylesheet">
+</head>
+<body data-dark>
+  <header data-dark>
+    <h1 data-dark>Hamburguer menu</h1>
+  </header>
+  <button class="panelBtn hamburger hamburger--vortex " type="button" data-dark>
+    <span class="hamburger-box">
+      <span class="hamburger-inner"></span>
+    </span>
+  </button>
+  <button class="scrollBtn hidden" data-dark>&#11014;</button>
+  <button class="darkModeBtn" data-dark>🌛</button>
+  <aside class="panel">
+    <nav class="menu">
+      <a href="#Section1" data-scroll-spy>Cuenta regresiva</a>
+      <a href="#Section2" data-scroll-spy>Peticiones asíncronas</a>
+      <a href="#Section3" data-scroll-spy>Geolocalización</a>
+      <a href="#Section4" data-scroll-spy>Sorteo digital</a>
+      <a href="#Section5" data-scroll-spy>SliderSlide</a>
+      <a href="#Section6" data-scroll-spy>Detección de la conexión</a>
+      <a href="#Section7" data-scroll-spy>Validación de formularios</a>
+      <a href="#Section8" data-scroll-spy>Detección de dispositivos</a>
+      <a href="#Section9" data-scroll-spy>Mostrando pokemones</a>
+      <a href="#Section10" data-scroll-spy>Buscador de canciones</a>
+    </nav>
+  </aside> 
+  <main>
+    <section id="Section1" data-scroll-spy>
+      <h2>Cuenta regresiva</h2>
+      <button class="iniciar">Iniciar</button>
+      <button class="detener">Detener</button>
+      <br>
+      <br>
+      <div id="reloj"></div>
+    </section>
+    <section id="Section2" data-scroll-spy>
+      <h2>Peticiones asíncronas con Fetch
+      </h2>
+      <ul id="fetch"></ul>
+      <input class="filter" type="search">
+      <article class="cards">
+        <figure class="card">
+          <img src="https://picsum.photos/id/6/200/200" alt="">
+          <figcaption>Technology</figcaption>
+        </figure>
+        <figure class="card">
+          <img src="https://picsum.photos/id/54/200/200" alt="photos">
+          <figcaption>Nature</figcaption>
+        </figure>
+        <figure class="card">
+          <img src="https://picsum.photos/id/200/200/200" alt="">
+          <figcaption>Nature</figcaption>
+        </figure>
+        <figure class="card">
+          <img src="https://picsum.photos/id/235/200/200" alt="">
+          <figcaption>Nature</figcaption>
+        </figure>
+      </article>
+      <figure class="card">
+          <img src="https://picsum.photos/id/4/200/200" alt="">
+          <figcaption>People</figcaption>
+        </figure>
+        <figure class="card">
+          <img src="https://picsum.photos/id/159/200/200" alt="">
+          <figcaption>Nature</figcaption>
+        </figure>
+      </article>
+    </section>
+    <section id="Section3" data-scroll-spy>
+      <h2>Geolocalización</h2>
+      <div id="geo"></div>
+    </section>
+    <section id="Section4" data-scroll-spy>
+      <h2>Sorteo digital</h2>
+      <ul class="players">
+        <li class="player">Java Script</li>
+        <li class="player">Python</li>
+        <li class="player">C#</li>
+        <li class="player">C++</li>
+        <li class="player">Visual Basic </li>
+        <li class="player">Perl</li>
+        <li class="player">Go</li>
+        <li class="player">PHP</li>
+        <li class="player">Java</li>
+      </ul>
+      <button class="winnerBtn">Obtener ganador</button>
+      <div id="sort"></div>
+  </section>
+    <section id="Section5" data-scroll-spy>
+      <h2>SliderSlide</h2>
+      <div class="slider">
+        <div class="sliderSlides">
+          <div class="sliderSlide automatic">
+            <img src="https://picsum.photos/id/120/200/200" alt="">
+          </div>
+          <div class="sliderSlide">
+            <img src="https://picsum.photos/id/121/200/200" alt="">
+          </div>
+          <div class="sliderSlide">
+            <img src="https://picsum.photos/id/122/200/200" alt="">
+          </div>
+          <div class="sliderSlide">
+            <img src="https://picsum.photos/id/123/200/200" alt="">
+          </div>
+          <div class="sliderSlide">
+            <img src="https://picsum.photos/id/124/200/200" alt="">
+          </div>
+          <div class="sliderSlide">
+            <img src="https://picsum.photos/id/125/200/200" alt="">
+          </div>
+        </div>
+        <div class="sliderButton">
+          <a id="prev" href="#">&laquo;</a>
+          <a id="next" href="#">&raquo;</a>
+        </div>
+        <div class="container">
+          <div class="point color"></div>
+          <div class="point"></div>
+          <div class="point"></div>
+          <div class="point"></div>
+          <div class="point"></div>
+          <div class="point"></div>
+        </div>
+      </div>
+          </section>
+    <section id="Section6" data-scroll-spy>
+      <h2>Detección de la conexión</h2>
+      <div id="conection"></div>
+    </section>
+    <section id="Section7" data-scroll-spy>
+      <h2>Validación de formularios</h2>
+      <form class="contact-form">
+        <legend>Ingrese los datos</legend>
+        <input name="name" type="text" placeholder="Entre el nombre" required pattern="^[A-Za-zÁáÉéÍíÓóÚúÜüÑñ\s]+$" title="Nombre solo acepta letras y espacios en blanco" </input>
+        <input name="email" type="email" placeholder="Entre el correo" required title="Email solo acepta un correo válido" </input>
+        <input name="subject" type="text" required placeholder="Entre el asunto" title="El campo asunto es requerido" </input>
+        <textarea name="comments" cols="50" rows="3" required placeholder="Escriba un comentario" data-pattern="^.{1,250}$" title="El campo solo admite 250 caracteres"></textarea>
+        <input type="submit" value="Enviar" </input>
+        <div class="contact-form-loader none">
+          <p>Enviando los datos</p>
+        </div>
+        <div class="contact-form-response none">
+          <p>Los datos han sido enviados</p>
+        </div>
+      </form>
+          </section>
+    <section id="Section8" data-scroll-spy>
+      <h2>Detección de dipositivos</h2>
+      <div id="useragent"></div>
+    </section>
+    <section id="Section9" data-scroll-spy>
+      <h2>Mostrando pokemones</h2>
+      <div id="pokemon"></div>
+      <button id="btn-2" class="">previous</button>
+      <button id="btn-1" class="">next</button>
+    </section>
+    <section id="Section10" data-scroll-spy>
+      <h2>Buscador de canciones</h2>
+      <form id="form">
+
+        <input type="text" name="artist" placeholder="Nombre del artista" />
+
+        <input type="text" name="song" placeholder="Titulo de la canción" />
+        </br>
+        <input type="submit" value="enviar" />
+
+        <input type="reset" value="reset" />
+
+      </form>
+      <article id="artist">
+        <h2>Datos del artista</h2>
+        <p id="nombre"></p>
+        <img id="image" src="" />
+        <p id="biography"></p>
+      </article>
+      <article id="song">
+        <h2>Datos de la cancion</h2>
+            <p id="lyric"></p>
+      </article>
+      <article id="sound-cloud">
+
+        <h2>Datos de Sound Cloud</h2>
+
+            <p id="sound-cloud"></p>
+
+      </article>
+  </section>
+      </main>
+  <script src="./index2.js" type="modules"></script>
+  </body>
+</html>
+    
