@@ -8,19 +8,19 @@ html {
   box-sizing: border-box;
 }
 body {
-  display: grid;
+  /*display: grid;
   grid-template-columns: 80% 20%;
   grid-template-rows: 4rem auto;
-  /*grid-template-areas: " header header " 
+  grid-template-areas: " header header " 
                        " main   panel ";*/
   margin: 0;
   overflow-x: hidden;
 }
 
 header{
-  /*grid-area: header;*/
+  /*grid-area: header;
   grid-column:1/4;
-  grid-row:1/2;
+  grid-row:1/2;*/
   position: sticky;  
   z-index: 999;
   top: 0;
@@ -35,10 +35,10 @@ header h1{
   text-align: center;
 }
 
-main{
+/*main{
   grid-column:1/3;
   grid-row:2/3;
-}
+}*/
 .panelBtn{
   position: fixed;
   z-index: 999;
@@ -74,13 +74,13 @@ main{
 }
 
 .panel {
-  grid-area: panel;
+  /*grid-area: panel;
   grid-column:3/4;
-  grid-row:2/auto;
+  grid-row:2/auto;*/
   position: sticky;
   top:4rem;
   z-index:999;
-  align-self: start;
+  /*align-self: start*/
   left:0;
   rigth:0;
   width:100%;
