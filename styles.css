@@ -79,8 +79,8 @@ header h1{
   grid-row:2/auto;*/
   position: sticky;
   top:4rem;
-  z-index:999;
-  /*align-self: start*/
+  /*z-index:999;*/
+  align-self: start;
   left:0;
   rigth:0;
   width:100%;
